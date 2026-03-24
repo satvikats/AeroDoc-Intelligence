@@ -5,20 +5,6 @@ An end-to-end GenAI pipeline that fine-tunes a transformer model on aviation-dom
 
 ---
 
-## What This Demonstrates
-
-| Skill | How It's Shown |
-|---|---|
-| Fine-tuning LLMs | DistilBERT fine-tuned on custom aviation text classes |
-| Pre/Post Processing | Text cleaning → tokenization → model → threshold filtering |
-| Data Engineering Pipelines | Modular pipelåine with logging, versioning, error handling |
-| GenAI Architecture | Local RAG with FAISS vector store + retrieval |
-| NLP Core Concepts | Embeddings, attention, tokenization, BPE |å
-| ML Concepts | Loss curves, eval metrics, confusion matrix |
-| Frameworks/Tools | PyTorch, HuggingFace Transformers, FAISS, FastAPI |
-
----
-
 ## Architecture
 
 ```
@@ -111,16 +97,3 @@ uvicorn api.main:app --reload
 
 ---
 
-## Interview Talking Points
-
-**"Why DistilBERT and not GPT?"**
-For classification tasks, encoder-only models like DistilBERT are more efficient and interpretable. We don't need generation — we need discriminative features. Also, in data-sensitive environments (like aviation), you avoid sending data to external APIs.
-
-**"What does fine-tuning actually change?"**
-The pre-trained model learns general language representations. Fine-tuning shifts the final layers' weights to recognize domain-specific patterns in aviation text — abbreviations like MEL, AOG, MTBF, squawk codes — that the base model has never prioritized.
-
-**"How does the RAG layer work?"**
-Documents are chunked, passed through an embedding model, and stored in a FAISS index. At query time, the query is embedded and cosine similarity retrieves the top-k relevant chunks. These are injected into context for downstream tasks — no model retraining needed to add new documents.
-
-**"Why FAISS instead of a vector DB?"**
-In air-gapped or data-classified environments, you can't use cloud vector DBs. FAISS is open-source, runs fully locally, and scales to millions of vectors on a single machine.
