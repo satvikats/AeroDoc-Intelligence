@@ -1,0 +1,321 @@
+2026-03-24 01:00:34,485 [INFO] __main__ — AeroDoc Intelligence — Full Pipeline Run
+2026-03-24 01:00:34,485 [INFO] __main__ — 
+============================================================
+2026-03-24 01:00:34,485 [INFO] __main__ — STAGE: 1. Generate Synthetic Data
+2026-03-24 01:00:34,485 [INFO] __main__ — ============================================================
+2026-03-24 01:00:34,496 [INFO] __main__ — STAGE COMPLETE: 1. Generate Synthetic Data — 0.01s
+
+2026-03-24 01:00:34,496 [INFO] __main__ — 
+============================================================
+2026-03-24 01:00:34,496 [INFO] __main__ — STAGE: 2. Preprocess Documents
+2026-03-24 01:00:34,496 [INFO] __main__ — ============================================================
+2026-03-24 01:00:34,530 [INFO] preprocessor — Processed 900 docs → 900 chunks
+2026-03-24 01:00:34,530 [INFO] preprocessor — Label distribution: {'parts_catalog': 150, 'inspection_checklist': 150, 'safety_bulletin': 150, 'incident_log': 150, 'maintenance_report': 150, 'technical_manual': 150}
+2026-03-24 01:00:34,532 [INFO] preprocessor — Saved 900 chunks → processed/chunks.jsonl
+2026-03-24 01:00:34,532 [INFO] __main__ — STAGE COMPLETE: 2. Preprocess Documents — 0.04s
+
+2026-03-24 01:00:34,532 [INFO] __main__ — 
+============================================================
+2026-03-24 01:00:34,532 [INFO] __main__ — STAGE: 3. Fine-tune DistilBERT Classifier
+2026-03-24 01:00:34,532 [INFO] __main__ — ============================================================
+2026-03-24 01:01:10,082 [INFO] numexpr.utils — NumExpr defaulting to 10 threads.
+2026-03-24 01:01:17,810 [INFO] trainer — Using device: cpu
+2026-03-24 01:01:18,106 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/distilbert-base-uncased/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-24 01:01:18,107 [WARNING] huggingface_hub.utils._http — Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-24 01:01:18,340 [INFO] httpx — HTTP Request: GET https://huggingface.co/distilbert-base-uncased/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-24 01:01:18,657 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/distilbert-base-uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:01:18,962 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/distilbert/distilbert-base-uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-24 01:01:19,270 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/distilbert-base-uncased/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:01:19,528 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/distilbert/distilbert-base-uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-24 01:01:19,780 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/distilbert-base-uncased/resolve/main/vocab.txt "HTTP/1.1 200 OK"
+2026-03-24 01:01:20,501 [INFO] httpx — HTTP Request: GET https://huggingface.co/distilbert-base-uncased/resolve/main/vocab.txt "HTTP/1.1 200 OK"
+2026-03-24 01:01:20,987 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/distilbert-base-uncased/resolve/main/tokenizer.json "HTTP/1.1 200 OK"
+2026-03-24 01:01:21,319 [INFO] httpx — HTTP Request: GET https://huggingface.co/distilbert-base-uncased/resolve/main/tokenizer.json "HTTP/1.1 200 OK"
+2026-03-24 01:01:21,932 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/distilbert-base-uncased/resolve/main/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-03-24 01:01:22,238 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/distilbert-base-uncased/resolve/main/special_tokens_map.json "HTTP/1.1 404 Not Found"
+2026-03-24 01:01:22,546 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/distilbert-base-uncased/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-03-24 01:01:22,848 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/distilbert-base-uncased/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-24 01:01:23,086 [INFO] httpx — HTTP Request: GET https://huggingface.co/distilbert-base-uncased/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-24 01:01:23,367 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/distilbert-base-uncased/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-24 01:01:23,875 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/distilbert/distilbert-base-uncased/xet-read-token/12040accade4e8a0f71eabdb258fecc2e7e948be "HTTP/1.1 200 OK"
+2026-03-24 01:01:31,535 [INFO] trainer — Frozen params: 48 | Trainable params: 56
+2026-03-24 01:01:31,537 [INFO] trainer — Split: 720 train / 90 val / 90 test
+2026-03-24 01:01:31,617 [INFO] trainer — Training: 135 steps, 13 warmup steps
+2026-03-24 01:01:43,451 [INFO] trainer — Epoch 1 | Step 20/45 | Loss: 1.6431 | LR: 1.89e-05
+2026-03-24 01:01:55,099 [INFO] trainer — Epoch 1 | Step 40/45 | Loss: 1.2943 | LR: 1.56e-05
+2026-03-24 01:01:58,943 [INFO] trainer — Epoch 1 | Train Loss: 1.5552 | Val Loss: 1.0480 | Val Acc: 1.0000
+2026-03-24 01:01:59,014 [INFO] trainer — Model saved → saved_model
+2026-03-24 01:01:59,014 [INFO] trainer —   ↳ New best model saved (val_loss=1.0480)
+2026-03-24 01:02:10,776 [INFO] trainer — Epoch 2 | Step 20/45 | Loss: 0.7872 | LR: 1.15e-05
+2026-03-24 01:02:22,459 [INFO] trainer — Epoch 2 | Step 40/45 | Loss: 0.5091 | LR: 8.20e-06
+2026-03-24 01:02:26,303 [INFO] trainer — Epoch 2 | Train Loss: 0.7131 | Val Loss: 0.3835 | Val Acc: 1.0000
+2026-03-24 01:02:26,375 [INFO] trainer — Model saved → saved_model
+2026-03-24 01:02:26,375 [INFO] trainer —   ↳ New best model saved (val_loss=0.3835)
+2026-03-24 01:02:38,068 [INFO] trainer — Epoch 3 | Step 20/45 | Loss: 0.3080 | LR: 4.10e-06
+2026-03-24 01:02:49,745 [INFO] trainer — Epoch 3 | Step 40/45 | Loss: 0.3123 | LR: 8.20e-07
+2026-03-24 01:02:53,582 [INFO] trainer — Epoch 3 | Train Loss: 0.3393 | Val Loss: 0.2517 | Val Acc: 1.0000
+2026-03-24 01:02:53,650 [INFO] trainer — Model saved → saved_model
+2026-03-24 01:02:53,650 [INFO] trainer —   ↳ New best model saved (val_loss=0.2517)
+2026-03-24 01:02:53,650 [INFO] trainer — Training complete.
+2026-03-24 01:02:53,673 [INFO] __main__ — STAGE COMPLETE: 3. Fine-tune DistilBERT Classifier — 139.14s
+
+2026-03-24 01:02:53,673 [INFO] __main__ — 
+============================================================
+2026-03-24 01:02:53,673 [INFO] __main__ — STAGE: 4. Build FAISS Vector Index
+2026-03-24 01:02:53,673 [INFO] __main__ — ============================================================
+2026-03-24 01:03:04,120 [INFO] embedder — Loading embedding model: all-MiniLM-L6-v2
+2026-03-24 01:03:04,121 [INFO] sentence_transformers.SentenceTransformer — Use pytorch device_name: mps
+2026-03-24 01:03:04,121 [INFO] sentence_transformers.SentenceTransformer — Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-03-24 01:03:04,434 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:03:04,446 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:04,458 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:04,687 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:03:04,697 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:04,707 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:04,951 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:03:04,961 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:05,191 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:03:05,199 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-24 01:03:05,209 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-24 01:03:05,434 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:03:05,444 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:05,672 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:03:05,682 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:05,692 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:05,921 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-24 01:03:06,176 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:03:06,185 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:06,196 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:06,456 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-24 01:03:06,681 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/xet-read-token/c9745ed1d9f207416be6d2e6f8de32d1f16199bf "HTTP/1.1 200 OK"
+2026-03-24 01:03:10,067 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:03:10,077 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:10,310 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:03:10,318 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:10,327 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:10,562 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-24 01:03:10,811 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-24 01:03:11,091 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:03:11,101 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/vocab.txt "HTTP/1.1 200 OK"
+2026-03-24 01:03:11,114 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/vocab.txt "HTTP/1.1 200 OK"
+2026-03-24 01:03:11,354 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:03:11,364 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:11,376 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:11,616 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-03-24 01:03:11,911 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:03:11,921 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:11,934 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:12,167 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-03-24 01:03:12,526 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:03:12,535 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:12,545 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-24 01:03:12,785 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-24 01:03:12,926 [INFO] embedder — Embedding dimension: 384
+2026-03-24 01:03:12,928 [INFO] faiss.loader — Loading faiss.
+2026-03-24 01:03:13,344 [INFO] faiss.loader — Successfully loaded faiss.
+2026-03-24 01:03:13,347 [INFO] embedder — Loading chunks from processed/chunks.jsonl...
+2026-03-24 01:03:13,349 [INFO] embedder — Embedding 900 chunks in batches of 128...
+2026-03-24 01:03:15,758 [INFO] embedder — Index now contains 900 vectors
+2026-03-24 01:03:15,759 [INFO] embedder — Vector store saved → vector_store (900 vectors)
+2026-03-24 01:03:15,759 [INFO] embedder — Index build complete.
+2026-03-24 01:03:15,759 [INFO] __main__ — STAGE COMPLETE: 4. Build FAISS Vector Index — 22.09s
+
+2026-03-24 01:03:15,760 [INFO] __main__ — 
+Pipeline complete in 161.3s
+2026-03-24 01:03:15,760 [INFO] __main__ — Documents processed: 900
+2026-03-24 01:03:15,760 [INFO] __main__ — Chunks generated: 900
+2026-03-24 01:03:15,760 [INFO] __main__ — Ready: run  uvicorn main:app --reload
+2026-03-24 01:05:59,433 [INFO] __main__ — AeroDoc Intelligence — Full Pipeline Run
+2026-03-24 01:05:59,433 [INFO] __main__ — 
+============================================================
+2026-03-24 01:05:59,433 [INFO] __main__ — STAGE: 1. Generate Synthetic Data
+2026-03-24 01:05:59,433 [INFO] __main__ — ============================================================
+2026-03-24 01:05:59,447 [INFO] __main__ — STAGE COMPLETE: 1. Generate Synthetic Data — 0.01s
+
+2026-03-24 01:05:59,447 [INFO] __main__ — 
+============================================================
+2026-03-24 01:05:59,447 [INFO] __main__ — STAGE: 2. Preprocess Documents
+2026-03-24 01:05:59,447 [INFO] __main__ — ============================================================
+2026-03-24 01:05:59,483 [INFO] preprocessor — Processed 900 docs → 900 chunks
+2026-03-24 01:05:59,483 [INFO] preprocessor — Label distribution: {'technical_manual': 150, 'parts_catalog': 150, 'maintenance_report': 150, 'incident_log': 150, 'inspection_checklist': 150, 'safety_bulletin': 150}
+2026-03-24 01:05:59,484 [INFO] preprocessor — Saved 900 chunks → processed/chunks.jsonl
+2026-03-24 01:05:59,484 [INFO] __main__ — STAGE COMPLETE: 2. Preprocess Documents — 0.04s
+
+2026-03-24 01:05:59,484 [INFO] __main__ — 
+============================================================
+2026-03-24 01:05:59,484 [INFO] __main__ — STAGE: 3. Fine-tune DistilBERT Classifier
+2026-03-24 01:05:59,484 [INFO] __main__ — ============================================================
+2026-03-24 01:06:01,166 [INFO] numexpr.utils — NumExpr defaulting to 10 threads.
+2026-03-24 01:06:01,355 [INFO] trainer — Using device: cpu
+2026-03-24 01:06:01,626 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/distilbert-base-uncased/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-24 01:06:01,862 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/distilbert-base-uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:06:02,091 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/distilbert/distilbert-base-uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-24 01:06:02,325 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/distilbert-base-uncased/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:06:02,562 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/distilbert/distilbert-base-uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-24 01:06:02,848 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/distilbert-base-uncased/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-24 01:06:02,849 [WARNING] huggingface_hub.utils._http — Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-24 01:06:03,082 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/distilbert-base-uncased/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-24 01:06:03,148 [INFO] trainer — Frozen params: 48 | Trainable params: 56
+2026-03-24 01:06:03,149 [INFO] trainer — Split: 720 train / 90 val / 90 test
+2026-03-24 01:06:03,227 [INFO] trainer — Training: 135 steps, 13 warmup steps
+2026-03-24 01:06:14,999 [INFO] trainer — Epoch 1 | Step 20/45 | Loss: 1.6064 | LR: 1.89e-05
+2026-03-24 01:06:26,438 [INFO] trainer — Epoch 1 | Step 40/45 | Loss: 1.1096 | LR: 1.56e-05
+2026-03-24 01:06:30,199 [INFO] trainer — Epoch 1 | Train Loss: 1.4996 | Val Loss: 0.9273 | Val Acc: 0.9444
+2026-03-24 01:06:30,244 [INFO] trainer — Model saved → saved_model
+2026-03-24 01:06:30,244 [INFO] trainer —   ↳ New best model saved (val_loss=0.9273)
+2026-03-24 01:06:41,801 [INFO] trainer — Epoch 2 | Step 20/45 | Loss: 0.6731 | LR: 1.15e-05
+2026-03-24 01:06:53,318 [INFO] trainer — Epoch 2 | Step 40/45 | Loss: 0.3890 | LR: 8.20e-06
+2026-03-24 01:06:57,112 [INFO] trainer — Epoch 2 | Train Loss: 0.6138 | Val Loss: 0.3086 | Val Acc: 1.0000
+2026-03-24 01:06:57,158 [INFO] trainer — Model saved → saved_model
+2026-03-24 01:06:57,158 [INFO] trainer —   ↳ New best model saved (val_loss=0.3086)
+2026-03-24 01:07:08,750 [INFO] trainer — Epoch 3 | Step 20/45 | Loss: 0.2852 | LR: 4.10e-06
+2026-03-24 01:07:20,320 [INFO] trainer — Epoch 3 | Step 40/45 | Loss: 0.2387 | LR: 8.20e-07
+2026-03-24 01:07:24,128 [INFO] trainer — Epoch 3 | Train Loss: 0.2800 | Val Loss: 0.1976 | Val Acc: 1.0000
+2026-03-24 01:07:24,176 [INFO] trainer — Model saved → saved_model
+2026-03-24 01:07:24,176 [INFO] trainer —   ↳ New best model saved (val_loss=0.1976)
+2026-03-24 01:07:24,176 [INFO] trainer — Training complete.
+2026-03-24 01:07:24,196 [INFO] __main__ — STAGE COMPLETE: 3. Fine-tune DistilBERT Classifier — 84.71s
+
+2026-03-24 01:07:24,196 [INFO] __main__ — 
+============================================================
+2026-03-24 01:07:24,196 [INFO] __main__ — STAGE: 4. Build FAISS Vector Index
+2026-03-24 01:07:24,196 [INFO] __main__ — ============================================================
+2026-03-24 01:07:24,660 [INFO] embedder — Loading embedding model: all-MiniLM-L6-v2
+2026-03-24 01:07:24,660 [INFO] sentence_transformers.SentenceTransformer — Use pytorch device_name: mps
+2026-03-24 01:07:24,660 [INFO] sentence_transformers.SentenceTransformer — Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-03-24 01:07:25,085 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:07:25,110 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-24 01:07:25,402 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:07:25,427 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-24 01:07:25,675 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:07:25,685 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-24 01:07:25,916 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:07:25,925 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-24 01:07:26,154 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:07:26,174 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-24 01:07:26,484 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:07:26,495 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-24 01:07:26,804 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-24 01:07:27,091 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:07:27,101 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-24 01:07:27,390 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:07:27,399 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-24 01:07:27,656 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:07:27,683 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-24 01:07:27,934 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-24 01:07:28,221 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-24 01:07:28,529 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:07:28,539 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-24 01:07:28,789 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-24 01:07:28,938 [INFO] embedder — Embedding dimension: 384
+2026-03-24 01:07:28,939 [INFO] faiss.loader — Loading faiss.
+2026-03-24 01:07:28,973 [INFO] faiss.loader — Successfully loaded faiss.
+2026-03-24 01:07:28,976 [INFO] embedder — Loading chunks from processed/chunks.jsonl...
+2026-03-24 01:07:28,977 [INFO] embedder — Embedding 900 chunks in batches of 128...
+2026-03-24 01:07:29,871 [INFO] embedder — Index now contains 900 vectors
+2026-03-24 01:07:29,873 [INFO] embedder — Vector store saved → vector_store (900 vectors)
+2026-03-24 01:07:29,873 [INFO] embedder — Index build complete.
+2026-03-24 01:07:29,874 [INFO] __main__ — STAGE COMPLETE: 4. Build FAISS Vector Index — 5.68s
+
+2026-03-24 01:07:29,874 [INFO] __main__ — 
+Pipeline complete in 90.4s
+2026-03-24 01:07:29,874 [INFO] __main__ — Documents processed: 900
+2026-03-24 01:07:29,874 [INFO] __main__ — Chunks generated: 900
+2026-03-24 01:07:29,874 [INFO] __main__ — Ready: run  uvicorn main:app --reload
+2026-03-24 01:10:39,040 [INFO] __main__ — AeroDoc Intelligence — Full Pipeline Run
+2026-03-24 01:10:39,040 [INFO] __main__ — 
+============================================================
+2026-03-24 01:10:39,040 [INFO] __main__ — STAGE: 1. Generate Synthetic Data
+2026-03-24 01:10:39,040 [INFO] __main__ — ============================================================
+2026-03-24 01:10:39,055 [INFO] __main__ — STAGE COMPLETE: 1. Generate Synthetic Data — 0.01s
+
+2026-03-24 01:10:39,055 [INFO] __main__ — 
+============================================================
+2026-03-24 01:10:39,055 [INFO] __main__ — STAGE: 2. Preprocess Documents
+2026-03-24 01:10:39,055 [INFO] __main__ — ============================================================
+2026-03-24 01:10:39,091 [INFO] preprocessor — Processed 900 docs → 900 chunks
+2026-03-24 01:10:39,091 [INFO] preprocessor — Label distribution: {'technical_manual': 150, 'safety_bulletin': 150, 'parts_catalog': 150, 'maintenance_report': 150, 'inspection_checklist': 150, 'incident_log': 150}
+2026-03-24 01:10:39,093 [INFO] preprocessor — Saved 900 chunks → processed/chunks.jsonl
+2026-03-24 01:10:39,093 [INFO] __main__ — STAGE COMPLETE: 2. Preprocess Documents — 0.04s
+
+2026-03-24 01:10:39,093 [INFO] __main__ — 
+============================================================
+2026-03-24 01:10:39,093 [INFO] __main__ — STAGE: 3. Fine-tune DistilBERT Classifier
+2026-03-24 01:10:39,093 [INFO] __main__ — ============================================================
+2026-03-24 01:10:41,043 [INFO] numexpr.utils — NumExpr defaulting to 10 threads.
+2026-03-24 01:10:41,279 [INFO] trainer — Using device: cpu
+2026-03-24 01:10:41,550 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/distilbert-base-uncased/resolve/main/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-24 01:10:41,786 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/distilbert-base-uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:10:42,063 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/distilbert/distilbert-base-uncased/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-24 01:10:42,369 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/distilbert-base-uncased/tree/main?recursive=true&expand=false "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:10:42,677 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/distilbert/distilbert-base-uncased/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-24 01:10:43,086 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/distilbert-base-uncased/resolve/main/config.json "HTTP/1.1 200 OK"
+2026-03-24 01:10:43,393 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/distilbert-base-uncased/resolve/main/model.safetensors "HTTP/1.1 302 Found"
+2026-03-24 01:10:43,461 [INFO] trainer — Frozen params: 48 | Trainable params: 56
+2026-03-24 01:10:43,462 [INFO] trainer — Split: 720 train / 90 val / 90 test
+2026-03-24 01:10:43,542 [INFO] trainer — Training: 135 steps, 13 warmup steps
+2026-03-24 01:10:55,595 [INFO] trainer — Epoch 1 | Step 20/45 | Loss: 1.5714 | LR: 1.89e-05
+2026-03-24 01:11:07,466 [INFO] trainer — Epoch 1 | Step 40/45 | Loss: 1.1234 | LR: 1.56e-05
+2026-03-24 01:11:11,318 [INFO] trainer — Epoch 1 | Train Loss: 1.4949 | Val Loss: 0.9302 | Val Acc: 1.0000
+2026-03-24 01:11:11,363 [INFO] trainer — Model saved → saved_model
+2026-03-24 01:11:11,363 [INFO] trainer —   ↳ New best model saved (val_loss=0.9302)
+2026-03-24 01:11:23,024 [INFO] trainer — Epoch 2 | Step 20/45 | Loss: 0.5593 | LR: 1.15e-05
+2026-03-24 01:11:34,666 [INFO] trainer — Epoch 2 | Step 40/45 | Loss: 0.3798 | LR: 8.20e-06
+2026-03-24 01:11:38,523 [INFO] trainer — Epoch 2 | Train Loss: 0.6027 | Val Loss: 0.3096 | Val Acc: 1.0000
+2026-03-24 01:11:38,571 [INFO] trainer — Model saved → saved_model
+2026-03-24 01:11:38,571 [INFO] trainer —   ↳ New best model saved (val_loss=0.3096)
+2026-03-24 01:11:50,247 [INFO] trainer — Epoch 3 | Step 20/45 | Loss: 0.2665 | LR: 4.10e-06
+2026-03-24 01:12:01,878 [INFO] trainer — Epoch 3 | Step 40/45 | Loss: 0.2781 | LR: 8.20e-07
+2026-03-24 01:12:05,706 [INFO] trainer — Epoch 3 | Train Loss: 0.2697 | Val Loss: 0.1953 | Val Acc: 1.0000
+2026-03-24 01:12:05,751 [INFO] trainer — Model saved → saved_model
+2026-03-24 01:12:05,751 [INFO] trainer —   ↳ New best model saved (val_loss=0.1953)
+2026-03-24 01:12:05,751 [INFO] trainer — Training complete.
+2026-03-24 01:12:05,775 [INFO] __main__ — STAGE COMPLETE: 3. Fine-tune DistilBERT Classifier — 86.68s
+
+2026-03-24 01:12:05,775 [INFO] __main__ — 
+============================================================
+2026-03-24 01:12:05,775 [INFO] __main__ — STAGE: 4. Build FAISS Vector Index
+2026-03-24 01:12:05,775 [INFO] __main__ — ============================================================
+2026-03-24 01:12:06,256 [INFO] embedder — Loading embedding model: all-MiniLM-L6-v2
+2026-03-24 01:12:06,256 [INFO] sentence_transformers.SentenceTransformer — Use pytorch device_name: mps
+2026-03-24 01:12:06,256 [INFO] sentence_transformers.SentenceTransformer — Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-03-24 01:12:06,504 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:12:06,505 [WARNING] huggingface_hub.utils._http — Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-03-24 01:12:06,515 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-24 01:12:06,755 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:12:06,765 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-24 01:12:06,993 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:12:07,004 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-03-24 01:12:07,248 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:12:07,258 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-03-24 01:12:07,488 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:12:07,499 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-03-24 01:12:07,734 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:12:07,743 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-03-24 01:12:07,979 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-03-24 01:12:08,282 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:12:08,293 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-24 01:12:08,568 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:12:08,580 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-03-24 01:12:08,826 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:12:08,835 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-03-24 01:12:09,070 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-03-24 01:12:09,410 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-03-24 01:12:09,820 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-03-24 01:12:09,829 [INFO] httpx — HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-03-24 01:12:10,063 [INFO] httpx — HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-03-24 01:12:10,226 [INFO] embedder — Embedding dimension: 384
+2026-03-24 01:12:10,228 [INFO] faiss.loader — Loading faiss.
+2026-03-24 01:12:10,255 [INFO] faiss.loader — Successfully loaded faiss.
+2026-03-24 01:12:10,258 [INFO] embedder — Loading chunks from processed/chunks.jsonl...
+2026-03-24 01:12:10,260 [INFO] embedder — Embedding 900 chunks in batches of 128...
+2026-03-24 01:12:11,088 [INFO] embedder — Index now contains 900 vectors
+2026-03-24 01:12:11,089 [INFO] embedder — Vector store saved → vector_store (900 vectors)
+2026-03-24 01:12:11,089 [INFO] embedder — Index build complete.
+2026-03-24 01:12:11,090 [INFO] __main__ — STAGE COMPLETE: 4. Build FAISS Vector Index — 5.31s
+
+2026-03-24 01:12:11,090 [INFO] __main__ — 
+Pipeline complete in 92.1s
+2026-03-24 01:12:11,090 [INFO] __main__ — Documents processed: 900
+2026-03-24 01:12:11,090 [INFO] __main__ — Chunks generated: 900
+2026-03-24 01:12:11,090 [INFO] __main__ — Ready: run  uvicorn main:app --reload
